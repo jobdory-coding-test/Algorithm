@@ -1,9 +1,7 @@
-package nameui;
-
 import java.io.*;
 import java.util.*;
 
-public class SWEA_1949 {
+public class Day01_등산로조성 {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
