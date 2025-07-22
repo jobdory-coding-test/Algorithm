@@ -1,3 +1,4 @@
+package Gaeun.Day01;
 import java.util.Scanner;
 
 class Solution {
