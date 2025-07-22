@@ -7,7 +7,7 @@ class Solution {
     static int n, k, top;  
     static int[][]  map;
     static boolean[][] chk; //방문 체크
-    static int answer = 0;      // 답 담을 곳
+    static int answer = 0; // 답 담을곳
 
     static int[] dx = {-1, 1, 0, 0}; // 위 아래
     static int[] dy = {0, 0, -1, 1}; // 좌 우
@@ -16,12 +16,15 @@ class Solution {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt(); // 테케 수
 
+        //테케만큼 돌리기
         for (int tc = 1; tc <= t; tc++) {
+            
+            //기본세팅
             n = sc.nextInt();
             k = sc.nextInt();
-
             map = new int[n][n];
-            chk = new boolean[n][n];
+
+            chk = new boolean[n][n];//경로체크
             top = 0;
             answer = 0;
 
@@ -64,6 +67,9 @@ class Solution {
     //	방문처리 false
     //
     //}
+
+
+    //DFS
     static void dfs(int x, int y, int len, boolean cut) {
         if (len > answer) answer = len;
 
@@ -74,19 +80,23 @@ class Solution {
             if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
             if (chk[nx][ny]) continue;
 
+
+            //재귀~ 점유 했다가 끝나면 해체 시키기
             if (map[nx][ny] < map[x][y]) {
                 chk[nx][ny] = true;
                 dfs(nx, ny, len + 1, cut);
                 chk[nx][ny] = false;
             }
             else {
+
+                //채굴 깎기
                 if (!cut && map[nx][ny] - k < map[x][y]) {
-                    int temp = map[nx][ny];
-                    map[nx][ny] = map[x][y] - 1;
+                    int tmp = map[nx][ny];
+                    map[nx][ny] = map[x][y] - 1; //딱 한칸 차이나게 깎아서 위험 최소화시켰어야함....ㅠ
                     chk[nx][ny] = true;
                     dfs(nx, ny, len + 1, true);
                     chk[nx][ny] = false;
-                    map[nx][ny] = temp;
+                    map[nx][ny] = tmp;
                 }
             }
         }
