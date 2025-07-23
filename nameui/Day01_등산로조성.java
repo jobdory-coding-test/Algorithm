@@ -7,12 +7,10 @@ public class Day01_등산로조성 {
 
     static int N;
     static int K;
+    static int ans;
 
-    static int cur = 0;
-    static int ans = 0;
     static int[][] board;
     static boolean[][] check;
-    static boolean isChanged;
 
     // 위, 아래, 왼, 오른
     static int[] dr = {-1, 1, 0, 0};
@@ -32,8 +30,6 @@ public class Day01_등산로조성 {
 	        // 값 초기화
 	        board = new int[N][N];
 	        check = new boolean[N][N];
-	        isChanged = false;
-	        cur = 0;
 	        ans = 0;
 	
 	        int max = 0;
@@ -43,19 +39,16 @@ public class Day01_등산로조성 {
 	            st = new StringTokenizer(br.readLine());
 	            for(int j = 0; j<N; j++) {
 	                board[i][j] = Integer.parseInt(st.nextToken());
-	                // 최댓값 한번 알아내기
-	                if(max < board[i][j]) {
-	                    max = board[i][j];
-	                }
+	                
+	                max = Math.max(max, board[i][j]);
 	            }
 	        }
-	
+		        
 	        // 시작 점 찾기
 	        for(int i = 0; i<N; i++) {
 	            for(int j = 0; j<N; j++) {
 	                if(max == board[i][j]) {
-	                	cur = 0;
-	                    solution(i, j, 21);
+	                    solution(i, j, 21, 0, false);
 	                }
 	            }
 	        }
@@ -64,44 +57,43 @@ public class Day01_등산로조성 {
         }
     }
 
-    // 이게 일단, 한 보드에서 최대 값 찾아내는 것..?
-    static void solution(int r, int c, int before) {
-        if(check[r][c]) {
+    static void solution(int r, int c, int before, int cur, boolean isChanged) {
+        if(!isDir(r, c) || check[r][c]) {
             return;
         }
-        if(before <= board[r][c]) {
-            if(board[r][c] - before < K && !isChanged) {
+        
+        if(before > board[r][c]) {
+        	check[r][c] = true;
+        	
+        	ans = Math.max(ans, cur+1);
+        	
+        	// 네 방향으로 감
+        	for(int i = 0; i<4; i++) {
+        		int nr = dr[i] + r;
+        		int nc = dc[i] + c;
+        		
+        		before = board[r][c];
+        		
+        		solution(nr, nc, before, cur+1, isChanged);
+        	}
+        	
+        	check[r][c] = false;
+        }
+        else {
+        	/**
+        	 * 내 로직 : board[r][c] 를  before 보다 작아질 때까지 깎음
+        	 * 다른 사람 로직 : board[r][c] 를 before 보다 작아질 때까지 깎는게 아니라 그냥 바로 이전 값보다 하나만 작게 세팅
+        	 * -> 이전 값 보다 1만 작은게 더 이득이고, board[r][c] 에서 K 를 뺐을 때 before 보다 작으면 당연히 그 -1된 값이 될 수 있으므로!
+        	 */
+            if(!isChanged && board[r][c] - K < before) {
             	isChanged = true;
-                for(int k = 1; k <= board[r][c] - before + 1; k++) {
-                	int temp = board[r][c];
-                    board[r][c] = board[r][c] - k;
-                    
-                    solution(r, c, before);
-
-                    board[r][c] = temp;
-                }
-                isChanged = false;
-            }
-            return;
-        }
-
-        check[r][c] = true;
-        if(ans < ++cur) {
-            ans = cur;
-        }
-
-        for(int i = 0; i<4; i++) {
-            int nr = dr[i] + r;
-            int nc = dc[i] + c;
-
-            if(isDir(nr, nc)) {
-                before = board[r][c];
-                solution(nr, nc, before);
+            	int origin = board[r][c];
+            	board[r][c] = before - 1;
+            	solution(r, c, before, cur, isChanged);
+            	board[r][c] = origin;
+            	isChanged = false;
             }
         }
-
-        check[r][c] = false;
-        cur--;
     }
 
     static boolean isDir(int nr, int nc) {
