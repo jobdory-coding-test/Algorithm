@@ -18,7 +18,7 @@ public class Day02_17298 {
 			arr1.add(Integer.parseInt(input[j]));
 		}
 //		6, 5, 3, 8, 2, 7
-
+ 
 //		8, 8, 8, -1, 7, -1
 //		 8   8    8  , -1 , 7 ,-1
 		
