@@ -6,7 +6,7 @@ public class Day02_17298 {
 	//	완전탐색
 		//	역순으로 가
 	public static void main(String args[]) throws IOException {
-		
+	
 		
 		//BufferedReader를 사용해서 입력값 받기
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
