@@ -1,4 +1,4 @@
-package 서가은.Day2;
+package 서가은.Day02;
 import java.util.*;
 import java.io.*;
 
