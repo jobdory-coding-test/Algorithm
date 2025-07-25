@@ -12,28 +12,24 @@ class Main {
         int[] trucks = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         int cur_weight = 0; // 현재 다리 위 중량
         int cur_idx = 0; // trucks 인덱스
-        int answer = 0;
+        int answer = w;
 
-        Deque<Integer> q = new ArrayDeque<>();
+        Queue<Integer> q = new ArrayDeque<>();
         for (int i = 0; i < w; i++) {
-            q.add(0);
+            q.offer(0);
         }
 
-        while (true) {
-            if (cur_idx == n && cur_weight == 0) {
-                break;
-            }
-
+        while (cur_idx < n) {
             // 전진
-            cur_weight -= q.removeFirst();
+            cur_weight -= q.poll();
 
             // 다리에 올릴 수 있으면 트럭 올리기
             if (cur_idx < n && cur_weight + trucks[cur_idx] <= L) {
-                q.add(trucks[cur_idx]);
+                q.offer(trucks[cur_idx]);
                 cur_weight += trucks[cur_idx];
                 cur_idx++;
             } else {
-                q.add(0);
+                q.offer(0);
             }
 
             answer++;
