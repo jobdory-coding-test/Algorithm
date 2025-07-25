@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Day04_지하철 {
 	private static int N, M, count;
 	private static int[][] arr;
 
