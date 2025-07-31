@@ -3,7 +3,7 @@ package 서가은.Day05;
 import java.io.*;
 import java.util.*;
 
-public class SnakeGame3190 {
+public class Day05_3190 {
     // 방향 담는 클래스 position
     static class Position {
         int x, y;
