@@ -1,11 +1,9 @@
-package 서가은.Day06;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Day06_3987 {
+public class Day07_3987 {
 
     static char[] record = { 'U', 'R', 'D', 'L' };
     static int[] dx = { -1, 0, 1, 0 };
