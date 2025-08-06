@@ -1,3 +1,4 @@
+package 서가은.day04;
 import java.io.*;
 import java.util.*;
 

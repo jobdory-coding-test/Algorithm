@@ -1,4 +1,4 @@
-package 서가은.Day01;
+package 서가은.day01;
 import java.util.Scanner;
 
 class Solution {
