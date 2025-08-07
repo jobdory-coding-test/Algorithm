@@ -29,9 +29,9 @@ public class Day11_15650 {
 		for(int i=node; i<N+1; i++) {
 			path[cnt]=i;
 			//자기 자신이 아니고 방문 안했으면 
-			if(i!=node && visited[i]==false) {
+			if(visited[i]==false) {
 				visited[node]=true; //방문처리 
-				dfs(i,cnt+1,visited); //dfs 실행
+				dfs(i+1,cnt+1,visited); //dfs 실행
 				visited[node]=false; // 다음 턴을 위한 점유 해제
 			}
 		}
