@@ -10,28 +10,18 @@ public class Day11_15655 {
 	static ArrayList<Integer> arr = new ArrayList<>();
 	static boolean[] visited;
 	
-	static StringBuilder result = new StringBuilder();
-	static int[] path;
-	
-	static void DFS(int node, boolean[] visited, int cnt) {
+	static void DFS(int node, boolean[] visited, String text, int cnt) {
+//		System.out.println("node "+arr.get(node)+"text "+text+"cnt "+cnt);
+		//중단점 만들어
 		if(cnt == M) {
-			for(int i=0; i<M; i++) {
-				result.append(path[i]);
-				result.append(" ");
-			}
-			
-			result.append("\n");
+			System.out.println(text);
 			return;
-			
-//			System.out.println(text);
-//			return;
 		}
 		
 		for(int i=node; i<arr.size(); i++){
 			if(visited[i]==false) {
 				visited[i]=true;
-				path[cnt]=arr.get(i);
-				DFS(i,visited,cnt+1);
+				DFS(i,visited,text+arr.get(i)+" ",cnt+1);
 				visited[i]=false;
 			}
 		}
@@ -57,11 +47,9 @@ public class Day11_15655 {
 		arr.sort(null);
 //		System.out.println(arr.toString());
 		//구현 시작
-		path = new int[N];
 		visited = new boolean[N+1];
-		DFS(0,visited,0);
+		DFS(0,visited,"",0);
 		
-		System.out.println(result.toString());
 		
 
 	}
