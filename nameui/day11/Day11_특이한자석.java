@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class SWEA4013_2 {
+public class Day11_특이한자석 {
 
 	// 상수
 	static final int N = 0;
