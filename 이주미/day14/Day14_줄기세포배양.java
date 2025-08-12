@@ -87,22 +87,18 @@ public class Day14_줄기세포배양 {
 		for(int time = 1; time<=K; time++) {
 			dupCells = new PriorityQueue<>();
 			
-//			System.out.println(" [ time: "+time+"/ total:"+total+" ]");
 			for(int i=0; i<arr.length; i++) {
 				for(int j=0; j<arr[i].length; j++) {
 					if(arr[i][j] == null) continue;
-//					System.out.printf("> (%d, %d) is not null\n", i, j);
 					
 					if(arr[i][j].duplicateAt == time) {
 						for(int d=0; d<dr.length; d++) {
 							if(arr[i+dr[d]][j+dc[d]]!=null) continue;
-//							System.out.printf("  > %d : duplicate add\n", d);
 							dupCells.add(new DupCell(arr[i][j].X, i+dr[d], j+dc[d]));
 						}
 					}
 					
 					if(arr[i][j].dieAt == time) {
-//						System.out.printf("  > %d : died\n", time);
 						total--;
 					}
 				}
@@ -118,7 +114,6 @@ public class Day14_줄기세포배양 {
 			DupCell cell = dupCells.poll();
 			if(arr[cell.r][cell.c]==null) {
 				arr[cell.r][cell.c] = new Cell(cell.X, time);
-//				System.out.printf(" # cell at %d, %d / total : %d\n", cell.r, cell.c, total);
 			}
 		}
 		
