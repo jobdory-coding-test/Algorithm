@@ -12,14 +12,9 @@ public class Day15_이진검색트리 {
 	static List<Integer> weights;
 	
 	static class Node{
-		int idx, weight;
-		boolean vis = false;
+		int weight;
 		Node root, left, right;
-		Node(int weight, int idx){
-			this.weight = weight;
-			this.idx = idx;
-		}
-		
+
 		Node(int weight){
 			this.weight = weight;
 		}
