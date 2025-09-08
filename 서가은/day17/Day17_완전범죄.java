@@ -4,7 +4,7 @@ import java.io.*;
 class Solution {
     public int solution(int[][] info, int n, int m) {
         int items = info.length;
-        final int INF = 1_000_000_000;
+        final int INF = Integer.MAX_VALUE;
 
 
         int[][] dp = new int[items + 1][m];
