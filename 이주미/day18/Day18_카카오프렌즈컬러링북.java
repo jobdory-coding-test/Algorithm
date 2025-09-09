@@ -27,7 +27,9 @@ class Day18_카카오프렌즈컬러링북 {
                 if(visited[i][j] || picture[i][j]==0) continue;
                 
                 numberOfArea++;
-                sizeOfOneArea = 0;
+                sizeOfOneArea = 1;
+                
+                visited[i][j]=true;
                 queue.offer(new Node(i, j, picture[i][j]));
         
                 int r, c, w, nr, nc;
