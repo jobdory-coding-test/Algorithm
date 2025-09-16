@@ -16,7 +16,7 @@ public class Day22_등대 {
             dfs(i);
         }
         if(tree[pointer] == 1) return; // 현재 위치가 이미 등대라면 더 이상 볼 필요없이 종료
-        if(treeInfo.size() == 1) { // 단말 노드라면 부모 노드가 등대로
+        if(treeInfo.size() == 1) { // 단말 노드라면 부모 노드가 등대로.
             tree[treeInfo.get(0)] = 1;
             return;
         }
