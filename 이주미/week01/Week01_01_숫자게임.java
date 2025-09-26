@@ -1,5 +1,5 @@
 import java.util.*;
-class Day25_숫자게임 {
+class Week01_01_숫자게임 {
     
     public int solution(int[] A, int[] B) {
         int N = A.length;
